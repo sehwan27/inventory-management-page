@@ -1,25 +1,28 @@
 <template>
   <div>
-    <table>
-      <tr>
-        <th>aa</th>
-        <th>bb</th>
-      </tr>
-    </table>
-    <h2>About Us</h2>
-    <p>
-      Welcome to our website! We are a team of passionate individuals dedicated
-      to providing valuable information and services.
-    </p>
+    <Table :fields="fields" :studentData="categoryArr"></Table>
   </div>
 </template>
 
 <script>
+import categoryService from "../services/category";
+import Table from "../components/Table.vue";
+
 export default {
-  name: 'About',
+  name: "my-component",
+  components: {
+    Table,
+  },
+  data() {
+    return {
+      categoryArr: [],
+      fields: ["name", "Name", "Course", "Gender", "Age"],
+    };
+  },
+  mounted() {
+    categoryService.getCategories().then((categories) => {
+      this.categoryArr = categories;
+    });
+  },
 };
 </script>
-
-<style>
-/* Add your custom styles for the About component here */
-</style>
