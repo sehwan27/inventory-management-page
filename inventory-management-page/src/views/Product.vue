@@ -7,7 +7,7 @@
       <div>
         <Table
           :fields="fields"
-          :dataList="categoryArr"
+          :dataList="productArr"
           :actionCol="true"
         ></Table>
       </div>
@@ -16,26 +16,36 @@
 </template>
 
 <script>
-import categoryService from "../services/category";
+import productService from "../services/product"
 import Table from "../components/Table.vue";
 
 export default {
-  name: "Category",
+  name: "Product",
   components: {
     Table,
   },
   data() {
     return {
-      categoryArr: [],
-      fields: [{
-        columnName: "Name",
-        fieldName: "name",
-      }],
+      productArr: [],
+      fields: [
+        {
+          columnName: "Name",
+          fieldName: "name",
+        },
+        {
+          columnName: "Brand",
+          fieldName: "brand",
+        },
+        {
+          columnName: "Quantity",
+          fieldName: "quantity",
+        },
+      ],
     };
   },
   mounted() {
-    categoryService.getCategories().then((categories) => {
-      this.categoryArr = categories;
+    productService.getProducts().then((products) => {
+      this.productArr = products;
     });
   },
 };

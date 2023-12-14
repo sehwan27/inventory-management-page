@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th v-for="field in fields" :key="field" @click="sortTable(field)">
-          {{ field }}
+          {{ field.columnName }}
           <i class="bi bi-sort-alpha-down" aria-label="Sort Icon"></i>
         </th>
         <th v-if="actionCol"></th>
@@ -11,7 +11,9 @@
     </thead>
     <tbody>
       <tr v-for="data in dataList" :key="data">
-        <td>{{ data["name"] }}</td>
+        <td v-for="field in fields" :key="field">
+          {{ data[field.fieldName] }}
+        </td>
         <td v-if="actionCol"><button class="action-button">VIEW</button></td>
       </tr>
     </tbody>
