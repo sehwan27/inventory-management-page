@@ -1,6 +1,17 @@
 <template>
   <div>
-    <Table :fields="fields" :studentData="categoryArr"></Table>
+    <div class="container">
+      <div class="row w-100 d-flex justify-content-end mb-3">
+        <button class="create-button" style="width: 100px">Create</button>
+      </div>
+      <div>
+        <Table
+          :fields="fields"
+          :dataList="categoryArr"
+          :actionCol="true"
+        ></Table>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,7 +27,7 @@ export default {
   data() {
     return {
       categoryArr: [],
-      fields: ["name", "Name", "Course", "Gender", "Age"],
+      fields: ["Name"],
     };
   },
   mounted() {
@@ -26,3 +37,8 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/style/variables.scss";
+@import "@/style/buttons.scss";
+</style>

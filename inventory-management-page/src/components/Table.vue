@@ -2,17 +2,18 @@
   <table id="tableComponent" class="table table-bordered table-striped">
     <thead>
       <tr>
-        <!-- loop through each value of the fields to get the table header -->
         <th v-for="field in fields" :key="field" @click="sortTable(field)">
           {{ field }}
           <i class="bi bi-sort-alpha-down" aria-label="Sort Icon"></i>
         </th>
+        <th v-if="actionCol"></th>
       </tr>
     </thead>
     <tbody>
-        <tr v-for="data in studentData" :key="data">
-          <td>{{ data['name'] }}</td>
-        </tr>
+      <tr v-for="data in dataList" :key="data">
+        <td>{{ data["name"] }}</td>
+        <td v-if="actionCol"><button class="action-button">VIEW</button></td>
+      </tr>
     </tbody>
   </table>
 </template>
@@ -20,13 +21,20 @@
 export default {
   name: "TableComponent",
   props: {
-    //
-    studentData: {
+    dataList: {
       type: Array,
     },
     fields: {
       type: Array,
     },
+    actionCol: {
+      type: Boolean,
+    },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/style/variables.scss";
+@import "@/style/buttons.scss";
+</style>

@@ -1,0 +1,25 @@
+
+
+.action-button {
+    background-color: white;
+    border: 2px $primary-2 solid;
+    color: $primary-2;
+    padding: 5px 10px;
+    border-radius: 7px;
+    
+    &:hover {
+        cursor: pointer;
+        background-color: $primary-3;
+        color: white;
+        border: white;
+    }
+}
+
+.create-button {
+    background-color: $primary-1;
+    color: white;
+    border-radius: 100px;
+    padding: 7px 10px;
+    border: 0;
+}
+
