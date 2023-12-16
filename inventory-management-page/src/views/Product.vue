@@ -63,6 +63,7 @@
                 >
                   Close
                 </button>
+                <button type="button" @click="closeCreateProductModal()">cancel</button>
                 <button
                   type="button"
                   class="create-button"
@@ -89,6 +90,7 @@
 <script>
 import productService from "../services/product";
 import Table from "../components/Table.vue";
+import schema from "../schema/product/listing"
 
 export default {
   name: "Product",
@@ -99,34 +101,12 @@ export default {
     return {
       productArr: [],
       formData: {},
-      fields: [
-        {
-          columnName: "Name",
-          fieldName: "name",
-          fieldType: "text",
-        },
-        {
-          columnName: "Brand",
-          fieldName: "brand",
-          fieldType: "text",
-        },
-        {
-          columnName: "Quantity",
-          fieldName: "quantity",
-          fieldType: "number",
-        },
-        {
-          columnName: "Manufactured Date",
-          fieldName: "manufactured_datetime_utc",
-          fieldType: "date",
-        },
-        {
-          columnName: "Expiry Date",
-          fieldName: "expiry_datetime_utc",
-          fieldType: "date",
-        },
-      ],
     };
+  },
+  computed: {
+    fields() {
+      return schema
+    }
   },
   mounted() {
     productService.getProducts().then((products) => {
@@ -138,8 +118,13 @@ export default {
       await productService.createNewProduct(payload);
       productService.getProducts().then((products) => {
         this.productArr = products;
+        this.closeCreateProductModal()
       });
     },
+
+    closeCreateProductModal() {
+      this.$bvModal.hide('createProductModal')
+    }
   },
 };
 </script>

@@ -8,11 +8,24 @@ export default {
     products = products.map((product) => {
       const arr = {
         ...product,
-        expiry_datetime_utc: moment().format("YYYY-MM-DD"),
+        expiry_datetime_utc: product.expiry_datetime_utc ? moment(product?.expiry_datetime_utc).format("YYYY-MM-DD") : '',
+        manufactured_datetime_utc: product.manufactured_datetime_utc ? moment(product?.manufactured_datetime_utc).format("YYYY-MM-DD") : '',
       };
+      console.log(arr)
       return arr;
     });
     return products;
+  },
+
+  async getProduct(id) {
+    const { data } = await axios.get(`/product/${id}`);
+    const schemaData = {
+      ...data,
+      expiry_datetime_utc: data.expiry_datetime_utc ? moment(data?.expiry_datetime_utc).format("YYYY-MM-DD") : '',
+      manufactured_datetime_utc: data.manufactured_datetime_utc ? moment(data?.manufactured_datetime_utc).format("YYYY-MM-DD") : '',
+      created_datetime_utc: data.created_datetime_utc ? moment(data?.created_datetime_utc).format("YYYY-MM-DD") : '',
+    };
+    return schemaData;
   },
 
   async createNewProduct(payload) {
