@@ -9,11 +9,28 @@
       >
         Edit
       </button>
+      <button
+        type="button"
+        style="width: 100px"
+        class="create-button"
+        @click="updateProduct()"
+      >
+        Save
+      </button>
+      <button
+        type="button"
+        style="width: 100px"
+        class="create-button"
+        @click="cancelEdit()"
+      >
+        Cancel
+      </button>
     </div>
     <fields-group
       :fields="schema"
       :schemaData="resultData"
       :editMode="editMode"
+      @inputForm="updatingProduct"
     />
   </div>
 </template>
@@ -28,6 +45,7 @@ export default {
     return {
       resultData: {},
       editMode: false,
+      formData: {},
     };
   },
   components: { FieldsGroup },
@@ -40,14 +58,28 @@ export default {
     },
   },
   mounted() {
-    productService
-      .getProduct(this.detailsId)
-      .then((result) => (this.resultData = result));
+    this.refreshGetProduct();
   },
   methods: {
+    refreshGetProduct() {
+      productService
+        .getProduct(this.detailsId)
+        .then((result) => (this.resultData = result));
+    },
     editProduct() {
       this.editMode = true;
     },
+    updatingProduct(fieldName, newValue) {
+      this.formData[fieldName] = newValue
+    },
+    async updateProduct() {
+      await productService.updateProduct(this.detailsId, this.formData);
+      await this.refreshGetProduct();
+      this.editMode = false
+    },
+    cancelEdit() {
+      this.editMode = false
+    }
   },
 };
 </script>

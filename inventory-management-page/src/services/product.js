@@ -31,4 +31,9 @@ export default {
     const { data } = await axios.post("/product", payload);
     return data;
   },
+
+  async updateProduct(id, payload) {
+    const { data } = await axios.put(`/product/${id}`, payload);
+    return data;
+  },
 };

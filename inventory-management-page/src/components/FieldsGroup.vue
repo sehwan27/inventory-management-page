@@ -10,9 +10,10 @@
             :type="field.fieldType || 'text'"
             :name="field.fieldName"
             :id="field.fieldName"
-            :value="schemaData[field.fieldName]"
             class="form-control"
+            :value="getFieldValue(field)"
             :disabled="!editMode"
+            @input="updateField(field, $event.target.value)"
           />
         </div>
       </div>
@@ -33,6 +34,34 @@ export default {
     editMode: {
       type: Boolean,
       default: true,
+    },
+  },
+  data() {
+    return {
+      formData: { ...this.schemaData },
+    };
+  },
+  watch: {
+    schemaData: {
+      immediate: true,
+      handler(newValue) {
+        this.formData = { ...newValue };
+      },
+    },
+    editMode(newVal) {
+      if (!newVal) {
+        this.formData = { ...this.schemaData };
+      }
+    },
+  },
+  methods: {
+    getFieldValue(field) {
+      return this.editMode
+        ? this.formData[field.fieldName]
+        : this.schemaData[field.fieldName];
+    },
+    updateField(field, value) {
+      this.$emit('inputForm', field.fieldName, value)
     },
   },
 };
