@@ -1,5 +1,8 @@
 <template>
-  <table id="tableComponent" class="table table-bordered table-striped">
+  <table
+    id="tableComponent"
+    class="table table-bordered table-striped table-hover"
+  >
     <thead>
       <tr>
         <th v-for="field in fields" :key="field" @click="sortTable(field)">
@@ -11,7 +14,7 @@
     </thead>
     <tbody>
       <tr v-if="!dataList || dataList.length === 0">
-        <td :colspan="fields.length">No data found</td>
+        <td :colspan="fields.length + 1">No data found</td>
       </tr>
       <tr v-for="data in dataList" :key="data" v-else>
         <td v-for="field in fields" :key="field">
@@ -37,7 +40,6 @@ export default {
     actionCol: {
       type: Boolean,
     },
-    actionsColumn: {}
   },
 };
 </script>
