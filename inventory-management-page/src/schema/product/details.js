@@ -10,6 +10,15 @@ export default [
       fieldType: "text",
     },
     {
+      columnName: "Category",
+      fieldName: "category_id",
+      fieldType: "dropdown",
+      selectOptions: [
+        { value: "1", name: "Food" },
+        { value: "2", name: "Electronic" }
+      ]
+    },
+    {
       columnName: "Quantity",
       fieldName: "quantity",
       fieldType: "number",

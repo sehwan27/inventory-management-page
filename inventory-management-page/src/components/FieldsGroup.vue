@@ -7,6 +7,7 @@
             field.columnName
           }}</label>
           <input
+            v-if="field.fieldType !== 'dropdown'"
             :type="field.fieldType || 'text'"
             :name="field.fieldName"
             :id="field.fieldName"
@@ -15,6 +16,23 @@
             :disabled="!editMode"
             @input="updateField(field, $event.target.value)"
           />
+          <select
+            :name="field.fieldName"
+            :id="field.fieldName"
+            v-if="field.fieldType === 'dropdown'"
+            class="form-control"
+            :disabled="!editMode"
+            @change="updateField(field, $event.target.value)"
+          >
+            <option
+              v-for="selectOption in field.selectOptions"
+              :key="selectOption"
+              :value="selectOption.value"
+              :selected="schemaData[field.fieldName] === selectOption.value"
+            >
+              {{ selectOption.name }}
+            </option>
+          </select>
         </div>
       </div>
     </div>
@@ -61,7 +79,7 @@ export default {
         : this.schemaData[field.fieldName];
     },
     updateField(field, value) {
-      this.$emit('inputForm', field.fieldName, value)
+      this.$emit("inputForm", field.fieldName, value);
     },
   },
 };

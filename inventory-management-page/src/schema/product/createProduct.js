@@ -13,11 +13,20 @@ export default [
     columnName: "Category",
     fieldName: "category_id",
     fieldType: "dropdown",
+    selectOptions: [
+      { value: "1", name: "Food" },
+      { value: "2", name: "Electronic" }
+    ]
   },
   {
     columnName: "Quantity",
     fieldName: "quantity",
     fieldType: "number",
+  },
+  {
+    columnName: "Price",
+    fieldName: "price",
+    fieldType: "text",
   },
   {
     columnName: "Manufactured Date",

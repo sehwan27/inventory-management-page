@@ -34,37 +34,12 @@
                 ></button>
               </div>
               <div class="modal-body">
-                <div class="container text-center">
-                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-                    <div
-                      class="col text-start mb-3"
-                      v-for="field in createProductSchema"
-                      :key="field"
-                    >
-                      <label for="field.fieldName" class="form-label">{{
-                        field.columnName
-                      }}</label>
-                      <input
-                        v-if="field.fieldType !== 'dropdown'"
-                        :type="field.fieldType || 'text'"
-                        :name="field.fieldName"
-                        :id="field.fieldName"
-                        class="form-control"
-                        v-model="formData[field.fieldName]"
-                      />
-                      <select
-                        name="category"
-                        id=""
-                        class="form-control"
-                        v-if="field.fieldType === 'dropdown'"
-                        v-model="formData[field.fieldName]"
-                      >
-                        <option value="1">Food</option>
-                        <option value="2">Electronic</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
+                <fields-group
+                  :fields="createProductSchema"
+                  :schemaData="{}"
+                  :editMode="true"
+                  @inputForm="creatingProduct"
+                />
               </div>
               <div class="modal-footer">
                 <button
@@ -80,7 +55,7 @@
                 <button
                   type="button"
                   class="create-button"
-                  @click="createNewProduct(formData)"
+                  @click="createNewProduct()"
                 >
                   Save
                 </button>
@@ -108,11 +83,13 @@ import Table from "../components/Table.vue";
 import schema from "../schema/product/listing";
 import createProductSchema from "../schema/product/createProduct";
 import { Modal } from "bootstrap";
+import FieldsGroup from "@/components/FieldsGroup.vue";
 
 export default {
   name: "Product",
   components: {
     Table,
+    FieldsGroup,
   },
   data() {
     return {
@@ -136,8 +113,8 @@ export default {
     });
   },
   methods: {
-    async createNewProduct(payload) {
-      const { id } = await productService.createNewProduct(payload);
+    async createNewProduct() {
+      const { id } = await productService.createNewProduct(this.formData);
       this.closeCreateProductModal()
       this.viewDetails(id);
     },
@@ -148,6 +125,9 @@ export default {
 
     viewDetails(id) {
       this.$router.push(`/product/${id}`);
+    },
+    creatingProduct(fieldName, newValue) {
+      this.formData[fieldName] = newValue
     },
   },
 };
