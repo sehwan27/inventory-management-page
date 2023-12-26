@@ -30,3 +30,17 @@
     }
 }
 
+.delete-button {
+    background-color: $primary-1;
+    color: white;
+    border-radius: 100px;
+    padding: 7px 10px;
+    border: 0;
+    min-width: 70px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $primary-2;
+    }
+}
+

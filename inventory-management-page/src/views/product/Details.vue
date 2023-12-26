@@ -25,6 +25,14 @@
       >
         Cancel
       </button>
+      <button
+        type="button"
+        style="width: 100px"
+        class="delete-button"
+        @click="deleteProduct()"
+      >
+        Delete
+      </button>
     </div>
     <fields-group
       :fields="schema"
@@ -79,6 +87,10 @@ export default {
     },
     cancelEdit() {
       this.editMode = false
+    },
+    async deleteProduct() {
+      await productService.updateProduct(this.detailsId, { is_deleted: true })
+      this.$router.push('/product')
     }
   },
 };

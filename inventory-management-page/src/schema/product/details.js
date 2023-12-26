@@ -15,6 +15,11 @@ export default [
       fieldType: "number",
     },
     {
+      columnName: "Price",
+      fieldName: "price",
+      fieldType: "text",
+    },
+    {
       columnName: "Manufactured Date",
       fieldName: "manufactured_datetime_utc",
       fieldType: "date",
