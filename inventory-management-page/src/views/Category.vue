@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="container">
+      <h3 class="text-start">Categories</h3>
       <div class="row w-100 d-flex justify-content-end mb-3">
         <button class="create-button" style="width: 100px">Create</button>
       </div>
@@ -9,7 +10,8 @@
           :fields="fields"
           :dataList="categoryArr"
           :actionCol="true"
-        ></Table>
+        >
+      </Table>
       </div>
     </div>
   </div>

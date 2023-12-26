@@ -10,11 +10,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="data in dataList" :key="data">
+      <tr v-if="!dataList || dataList.length === 0">
+        <td :colspan="fields.length">No data found</td>
+      </tr>
+      <tr v-for="data in dataList" :key="data" v-else>
         <td v-for="field in fields" :key="field">
           {{ data[field.fieldName] }}
         </td>
-        <td v-if="actionCol"><button class="action-button">VIEW</button></td>
+        <td v-if="actionCol">
+          <slot :data="data"></slot>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -32,6 +37,7 @@ export default {
     actionCol: {
       type: Boolean,
     },
+    actionsColumn: {}
   },
 };
 </script>

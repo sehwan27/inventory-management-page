@@ -38,19 +38,30 @@
                   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
                     <div
                       class="col text-start mb-3"
-                      v-for="field in fields"
+                      v-for="field in createProductSchema"
                       :key="field"
                     >
-                      <label for="" class="form-label">{{
+                      <label for="field.fieldName" class="form-label">{{
                         field.columnName
                       }}</label>
                       <input
+                        v-if="field.fieldType !== 'dropdown'"
                         :type="field.fieldType || 'text'"
                         :name="field.fieldName"
                         :id="field.fieldName"
                         class="form-control"
                         v-model="formData[field.fieldName]"
                       />
+                      <select
+                        name="category"
+                        id=""
+                        class="form-control"
+                        v-if="field.fieldType === 'dropdown'"
+                        v-model="formData[field.fieldName]"
+                      >
+                        <option value="1">Food</option>
+                        <option value="2">Electronic</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -63,7 +74,9 @@
                 >
                   Close
                 </button>
-                <button type="button" @click="closeCreateProductModal()">cancel</button>
+                <button type="button" @click="closeCreateProductModal()">
+                  cancel
+                </button>
                 <button
                   type="button"
                   class="create-button"
@@ -77,11 +90,13 @@
         </div>
       </div>
       <div>
-        <Table
-          :fields="fields"
-          :dataList="productArr"
-          :actionCol="true"
-        ></Table>
+        <Table :fields="fields" :dataList="productArr" :actionCol="true">
+          <template #default="{ data }">
+            <button class="action-button" @click="viewDetails(data.id)">
+              VIEW
+            </button>
+          </template>
+        </Table>
       </div>
     </div>
   </div>
@@ -90,7 +105,9 @@
 <script>
 import productService from "../services/product";
 import Table from "../components/Table.vue";
-import schema from "../schema/product/listing"
+import schema from "../schema/product/listing";
+import createProductSchema from "../schema/product/createProduct";
+import { Modal } from "bootstrap";
 
 export default {
   name: "Product",
@@ -105,31 +122,37 @@ export default {
   },
   computed: {
     fields() {
-      return schema
-    }
+      return schema;
+    },
+    createProductSchema() {
+      return createProductSchema;
+    },
   },
   mounted() {
+    this.createProductModal = new Modal('#createProductModal')
+    this.formData = {};
     productService.getProducts().then((products) => {
       this.productArr = products;
     });
   },
   methods: {
     async createNewProduct(payload) {
-      await productService.createNewProduct(payload);
-      productService.getProducts().then((products) => {
-        this.productArr = products;
-        this.closeCreateProductModal()
-      });
+      const { id } = await productService.createNewProduct(payload);
+      this.closeCreateProductModal()
+      this.viewDetails(id);
     },
 
     closeCreateProductModal() {
-      this.$bvModal.hide('createProductModal')
-    }
+      this.createProductModal.hide()
+    },
+
+    viewDetails(id) {
+      this.$router.push(`/product/${id}`);
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/variables.scss";
 @import "@/style/buttons.scss";
 </style>

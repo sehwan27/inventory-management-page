@@ -12,6 +12,7 @@
             :id="field.fieldName"
             :value="schemaData[field.fieldName]"
             class="form-control"
+            :disabled="!editMode"
           />
         </div>
       </div>

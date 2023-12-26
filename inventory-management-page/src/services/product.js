@@ -11,7 +11,6 @@ export default {
         expiry_datetime_utc: product.expiry_datetime_utc ? moment(product?.expiry_datetime_utc).format("YYYY-MM-DD") : '',
         manufactured_datetime_utc: product.manufactured_datetime_utc ? moment(product?.manufactured_datetime_utc).format("YYYY-MM-DD") : '',
       };
-      console.log(arr)
       return arr;
     });
     return products;
@@ -29,7 +28,7 @@ export default {
   },
 
   async createNewProduct(payload) {
-    const result = await axios.post("/product", payload);
-    return result.data;
+    const { data } = await axios.post("/product", payload);
+    return data;
   },
 };
