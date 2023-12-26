@@ -49,9 +49,6 @@
                 >
                   Close
                 </button>
-                <button type="button" @click="closeCreateProductModal()">
-                  cancel
-                </button>
                 <button
                   type="button"
                   class="create-button"
