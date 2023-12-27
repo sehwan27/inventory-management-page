@@ -19,7 +19,7 @@
 
 <script>
 import categoryService from "../services/category";
-import Table from "../components/Table.vue";
+import Table from "@/components/Table.vue";
 
 export default {
   name: "Category",

@@ -76,7 +76,7 @@
 
 <script>
 import productService from "../services/product";
-import Table from "../components/Table.vue";
+import Table from "@/components/Table.vue";
 import schema from "../schema/product/listing";
 import createProductSchema from "../schema/product/createProduct";
 import { Modal } from "bootstrap";
@@ -92,6 +92,7 @@ export default {
     return {
       productArr: [],
       formData: {},
+      validationResult: {},
     };
   },
   computed: {
@@ -111,6 +112,7 @@ export default {
   },
   methods: {
     async createNewProduct() {
+      // this.validateForm()
       const { id } = await productService.createNewProduct(this.formData);
       this.closeCreateProductModal()
       this.viewDetails(id);
@@ -126,6 +128,9 @@ export default {
     creatingProduct(fieldName, newValue) {
       this.formData[fieldName] = newValue
     },
+    validateForm() {
+      console.log('form', this.formData)
+    }
   },
 };
 </script>
