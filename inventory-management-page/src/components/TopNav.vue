@@ -35,6 +35,7 @@ export default {};
 
 .nav-link, .nav-item {
   width: fit-content;
+  color: white;
 }
 
 .navbar-nav{
