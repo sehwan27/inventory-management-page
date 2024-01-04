@@ -66,3 +66,18 @@
         text-decoration: underline;
     }
 }
+
+.close-button {
+    background-color: #ccc;
+    min-width: 70px;
+    color: white;
+    border-radius: 100px;
+    padding: 7px 10px;
+    border: 0;
+    min-width: 70px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: grey;
+    }
+}

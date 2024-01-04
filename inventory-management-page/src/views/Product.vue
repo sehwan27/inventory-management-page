@@ -45,7 +45,7 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  class="close-button"
                   data-bs-dismiss="modal"
                 >
                   Close
