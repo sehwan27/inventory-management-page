@@ -41,7 +41,7 @@
 
             <span>
                 <span style="font-size: 13px;">Don't have an account?</span>
-                <router-link to="/forgot-password" class="sign-up-link"> Sign Up</router-link>
+                <router-link to="/signup" class="sign-up-link"> Sign Up</router-link>
             </span>
         </div>
       </div>
