@@ -44,3 +44,20 @@
     }
 }
 
+.login-button {
+    width: 100%;
+    border-radius: 50px;
+    background-color: #22092C;
+    color: white;
+    padding: 5px;
+    margin-top: 20px;
+}
+
+.sign-up-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    &:hover {
+        text-decoration: underline;
+    }
+}

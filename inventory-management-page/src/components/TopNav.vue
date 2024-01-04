@@ -1,10 +1,14 @@
 <template>
   <div>
     <div class="title-container">
-
       <span style="font-family: sans-serif">
         <span class="mb-0 me-2 inventory-text">INVENTORY</span>
         <span class="management-text">MANAGEMENT</span>
+      </span>
+      <span class="float-end">
+        <router-link to="/login" class="nav-link">
+          <font-awesome-icon :icon="['fas', 'right-to-bracket']"
+        /></router-link>
       </span>
     </div>
 
@@ -33,20 +37,19 @@ export default {};
   background-color: $primary-1;
 }
 
-.nav-link, .nav-item {
+.nav-link,
+.nav-item {
   width: fit-content;
   color: white;
 }
 
-.navbar-nav{
+.navbar-nav {
   flex-direction: row;
 }
 
 .nav-item {
   padding: 5px 10px;
 }
-
-
 
 .inventory-text {
   color: $primary-1;

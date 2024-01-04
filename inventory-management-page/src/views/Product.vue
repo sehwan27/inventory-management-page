@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TopNav />
     <div class="container">
       <h3 class="text-start">Products</h3>
       <div class="row w-100 d-flex justify-content-end mb-3">
@@ -81,12 +82,14 @@ import schema from "../schema/product/listing";
 import createProductSchema from "../schema/product/createProduct";
 import { Modal } from "bootstrap";
 import FieldsGroup from "@/components/FieldsGroup.vue";
+// import TopNav from '@/components/TopNav.vue';
 
 export default {
   name: "Product",
   components: {
     Table,
     FieldsGroup,
+    // TopNav,
   },
   data() {
     return {
