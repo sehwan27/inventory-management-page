@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router'; // Import the router configuration
 import axios from 'axios'
 import TopNav from './components/TopNav.vue'
+import Footer from './components/Footer.vue'
 import 'bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 // Create the app instance
@@ -23,6 +24,7 @@ const app = createApp(App);
 // Use the router
 app.use(router);
 app.component('TopNav', TopNav)
+app.component('Footer', Footer)
 axios.defaults.baseURL = 'http://localhost:8000'
 // Mount the app to the element with id 'app'
 app.component('font-awesome-icon', FontAwesomeIcon).mount('#app');
