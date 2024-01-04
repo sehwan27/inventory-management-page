@@ -37,7 +37,7 @@
               {{ selectOption.name }}
             </option>
           </select>
-          <span class="error-text">{{ getErrorText(field.fieldName) }}</span>
+          <span class="error-text" v-if="editMode">{{ getErrorText(field.fieldName) }}</span>
         </div>
       </div>
     </div>
@@ -72,6 +72,7 @@ export default {
       immediate: true,
       handler(newValue) {
         this.formData = { ...newValue };
+        this.validateForm();
       },
     },
     editMode(newVal) {
@@ -79,9 +80,6 @@ export default {
         this.formData = { ...this.schemaData };
       }
     },
-  },
-  mounted() {
-    this.validateForm();
   },
   methods: {
     getFieldValue(field) {

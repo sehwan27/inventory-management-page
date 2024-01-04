@@ -41,11 +41,12 @@ export default [
     columnName: "Manufactured Date",
     fieldName: "manufactured_datetime_utc",
     fieldType: "date",
-    validationSchema: Joi.string().required(),
+    validationSchema: Joi.date().required(),
   },
   {
     columnName: "Expiry Date",
     fieldName: "expiry_datetime_utc",
     fieldType: "date",
+    validationSchema: Joi.date().required(),
   },
 ];

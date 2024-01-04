@@ -16,7 +16,8 @@
     }
 }
 
-.create-button {
+.create-button,
+.details-action-button {
     background-color: $primary-1;
     color: white;
     border-radius: 100px;
@@ -28,6 +29,10 @@
         cursor: pointer;
         background-color: $primary-2;
     }
+}
+
+.details-action-button {
+    margin: 0 5px;
 }
 
 .delete-button {

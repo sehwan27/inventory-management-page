@@ -1,27 +1,31 @@
 <template>
   <div>
-    <div class="row w-100 d-flex justify-content-end mb-3">
+    <TopNav />
+    <div class="row w-100 d-flex justify-content-end my-3">
       <button
         type="button"
         style="width: 100px"
-        class="create-button"
+        class="details-action-button"
         @click="editProduct()"
+        v-if="!editMode"
       >
         Edit
       </button>
       <button
         type="button"
         style="width: 100px"
-        class="create-button"
+        class="details-action-button"
         @click="updateProduct()"
+        v-if="editMode"
       >
         Save
       </button>
       <button
         type="button"
         style="width: 100px"
-        class="create-button"
+        class="details-action-button"
         @click="cancelEdit()"
+        v-if="editMode"
       >
         Cancel
       </button>
@@ -40,12 +44,13 @@
       :editMode="editMode"
       @inputForm="updatingProduct"
     />
+    <FooterComponent />
   </div>
 </template>
 
 <script>
 import productService from "@/services/product";
-import FieldsGroup from "../../components/FieldsGroup.vue";
+import FieldsGroup from "@/components/FieldsGroup.vue";
 import schema from "../../schema/product/details";
 
 export default {
