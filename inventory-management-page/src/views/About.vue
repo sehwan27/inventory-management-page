@@ -1,30 +1,53 @@
 <template>
   <div>
-    aaa666
-    <b-table striped hover :items="items" :fields="fields"></b-table>
-    yy
+    <TopNav />
+    <div class="row w-100 mt-5">
+      <div class="col-md-6 d-flex align-items-center">
+        <div class="container">
+          <h2 class="about-slogan">
+            Integrate your business -> automate your work
+          </h2>
+          <p class="about-description">
+            Evolve at the speed and scale of your business with the leader in
+            low-code-automation
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="img-container">
+          <img src="../assets/login.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data() {
-    return {
-      items: [
-        { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
-        { age: 21, first_name: "Larsen", last_name: "Shaw" },
-        { age: 89, first_name: "Geneva", last_name: "Wilson" },
-        { age: 38, first_name: "Jami", last_name: "Carney" },
-      ],
-      fields: [
-        { key: 'age', label: 'Age' },
-        { key: 'first_name', label: 'First Name' },
-        { key: 'last_name', label: 'Last Name' },
-      ],
-    }
-  },
+  name: "HelloWorld",
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.img-container {
+  width: 100%;
+  img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+}
+
+.about-slogan {
+  font-weight: bold;
+  font-size: 50px;
+  text-align: left;
+}
+
+.about-description {
+  text-align: left;
+  font-weight: 700;
+}
+</style>
