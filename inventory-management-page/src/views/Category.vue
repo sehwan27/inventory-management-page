@@ -1,7 +1,8 @@
 <template>
   <div>
+    <TopNav />
     <div class="container">
-      <h3 class="text-start">Categories</h3>
+      <h3 class="text-start my-4">Categories</h3>
       <div class="row w-100 d-flex justify-content-end mb-3">
         <button class="create-button" style="width: 100px">Create</button>
       </div>
@@ -14,6 +15,7 @@
       </Table>
       </div>
     </div>
+    <FooterComponent />
   </div>
 </template>
 

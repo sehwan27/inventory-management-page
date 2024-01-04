@@ -24,7 +24,7 @@ const app = createApp(App);
 // Use the router
 app.use(router);
 app.component('TopNav', TopNav)
-app.component('Footer', Footer)
+app.component('FooterComponent', Footer)
 axios.defaults.baseURL = 'http://localhost:8000'
 // Mount the app to the element with id 'app'
 app.component('font-awesome-icon', FontAwesomeIcon).mount('#app');

@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <FooterComponent />
   </div>
 </template>
 
