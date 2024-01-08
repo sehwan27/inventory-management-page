@@ -12,6 +12,7 @@ export default [
     columnName: "Brand",
     fieldName: "brand",
     fieldType: "text",
+    required: true,
     validationSchema: Joi.string().required(),
   },
   {
@@ -22,6 +23,7 @@ export default [
       { value: "1", name: "Food" },
       { value: "2", name: "Electronic" }
     ],
+    required: true,
     validationSchema: Joi.string().required(),
   },
   {
@@ -29,24 +31,28 @@ export default [
     fieldName: "quantity",
     fieldType: "number",
     min: 1,
+    required: true,
     validationSchema: Joi.string().required(),
   },
   {
     columnName: "Price",
     fieldName: "price",
     fieldType: "text",
+    required: true,
     validationSchema: Joi.string().required(),
   },
   {
     columnName: "Manufactured Date",
     fieldName: "manufactured_datetime_utc",
     fieldType: "date",
+    required: true,
     validationSchema: Joi.date().required(),
   },
   {
     columnName: "Expiry Date",
     fieldName: "expiry_datetime_utc",
     fieldType: "date",
+    required: true,
     validationSchema: Joi.date().required(),
   },
 ];
