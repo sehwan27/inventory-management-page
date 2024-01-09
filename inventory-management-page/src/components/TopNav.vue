@@ -6,9 +6,9 @@
         <span class="management-text">MANAGEMENT</span>
       </span>
       <span class="float-end">
-        <router-link to="/login" class="nav-link">
-          <font-awesome-icon :icon="['fas', 'right-to-bracket']"
-        /></router-link>
+        <button class="nav-link" @click="logoutUser()">
+          <font-awesome-icon :icon="['fas', 'right-to-bracket']" />
+        </button>
       </span>
     </div>
 
@@ -26,7 +26,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    logoutUser() {
+      sessionStorage.setItem("token", null)
+      this.$router.push('/login')
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
