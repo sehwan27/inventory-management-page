@@ -23,6 +23,7 @@ const routes = [
   {
     path: '/product',
     component: Product,
+    meta: { requiredAuth: true }
   },
   {
     path: '/product/:id',

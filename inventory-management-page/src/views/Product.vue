@@ -114,7 +114,6 @@ export default {
   },
   methods: {
     async createNewProduct() {
-      // this.validateForm()
       const { id } = await productService.createNewProduct(this.formData);
       this.closeCreateProductModal()
       this.viewDetails(id);
@@ -130,9 +129,6 @@ export default {
     creatingProduct(fieldName, newValue) {
       this.formData[fieldName] = newValue
     },
-    validateForm() {
-      console.log('form', this.formData)
-    }
   },
 };
 </script>

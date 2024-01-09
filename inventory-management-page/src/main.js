@@ -26,5 +26,15 @@ app.use(router);
 app.component('TopNav', TopNav)
 app.component('FooterComponent', Footer)
 axios.defaults.baseURL = 'http://localhost:8000'
+
+axios.interceptors.request.use((config) => {
+    if (!['/login', '/register'].includes(config.url)) {
+        const token = sessionStorage.getItem('token')
+        config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+}, (error) => {
+    return Promise.reject(error)
+})
 // Mount the app to the element with id 'app'
 app.component('font-awesome-icon', FontAwesomeIcon).mount('#app');

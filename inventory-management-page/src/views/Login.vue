@@ -17,6 +17,7 @@
             class="form-control"
             id="floatingInput"
             placeholder="name@example.com"
+            v-model="inputEmail"
           />
           <label for="floatingInput">Email address</label>
         </div>
@@ -27,6 +28,7 @@
             id="passwordInput"
             class="form-control"
             placeholder=""
+            v-model="inputPassword"
           />
           <label for="passwordInput" id="password">Password</label>
         </div>
@@ -35,7 +37,7 @@
             <router-link to="/forgot-password" class="forgot-password-link">Forgot Password?</router-link>
         </div>
 
-        <div class="w-100"><button class="login-button">Log In</button></div>
+        <div class="w-100"><button class="login-button" @click="loginUser()">Log In</button></div>
 
         <div class="mt-3">
 
@@ -50,7 +52,22 @@
 </template>
 
 <script>
-export default {};
+import userService from '@/services/user'
+
+export default {
+  data() {
+    return {
+      inputEmail: '',
+      inputPassword: ''
+    }
+  },
+  methods: {
+    async loginUser() {
+      const loginStatus = await userService.loginUser({ email: this.inputEmail, password: this.inputPassword })
+      if (loginStatus === 200) this.$router.push(`/`);
+    }
+  }
+};
 </script>
 
 <style scoped lang="scss">
