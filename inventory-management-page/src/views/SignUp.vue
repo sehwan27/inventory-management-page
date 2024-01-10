@@ -22,7 +22,6 @@
           />
           <label :for="field.fieldName"
             >{{ field.columnName }}
-            <!-- <span v-if="field.required" class="required">*</span> -->
             </label
           >
           <p class="error-text text-start">
