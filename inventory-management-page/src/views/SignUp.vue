@@ -66,6 +66,7 @@ export default {
       await this.validateForm();
       if (this.validationResult) return
       const res = await userService.registerUser(this.formData);
+      if (res === 201) this.$router.push('/login')
       return res
     },
     getErrorText(fieldName) {

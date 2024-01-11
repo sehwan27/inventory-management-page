@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   async registerUser(payload) {
-    const { data } = await axios.post("/user", payload);
-    return data;
+    const { status } = await axios.post("/register", payload);
+    return status;
   },
 
   async loginUser(payload) {
